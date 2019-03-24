@@ -76,12 +76,12 @@ public class Matran {
 //Đang bị lỗi chưa giải quyết được
     public void nhanMaTran(Matran b, Matran c) {
         c.MT = new int[SoHang][b.SoCot];
-        System.out.println("So cot ma tran 1 can bang so hang ma tran 2!");     
+        //System.out.println("So cot ma tran 1 can bang so hang ma tran 2!");     
             for (int i = 0; i < this.SoHang; i++) {
                 for (int j = 0; j < b.SoCot; j++) {
                     c.MT[i][j] = 0;
                     for (int k = 0; k < this.SoCot; k++) {
-                        c.MT[i][j] = c.MT[i][j]+ this.MT[i][k] * b.MT[k][j];
+                        c.MT[i][j] += this.MT[i][k] * b.MT[k][j];
                     }
                 }
             }
