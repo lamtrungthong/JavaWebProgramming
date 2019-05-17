@@ -65,9 +65,9 @@ WHERE sothe = 'CT005';
 /* Hiển thị tên, khoa của các độc giả và sắp xếp theo khoa*/
 select ten, khoa from docgia order by khoa;
 
-/* Tim những đọc giả mượn sách Toán vào ngày 1/1/2018
+/* Tim những đọc giả mượn sách Toán vào ngày 1/1/2018*/
 select docgia.* from docgia join phieumuon on docgia.sothe = phieumuon.sothe join sach on sach.masach  = phieumuon.masach
-where sach.tensach like 'Toan' and phieumuon.ngaymuon like '2018-01-01' ;*/
+where sach.tensach like 'Toan' and phieumuon.ngaymuon like '2018-01-01' ;
 
 /* Hiển thị tên, số thẻ, tên sách của tất cả đọc giả mượn sách trong
 tháng 1/2018*/
