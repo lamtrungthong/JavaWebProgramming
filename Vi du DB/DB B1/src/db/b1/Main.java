@@ -38,8 +38,13 @@ public class Main {
             System.out.println("/* Tim những đọc giả mượn sách Toán vào ngày 1/1/2018*/");
             PreparedStatement pstmt2 = conn.prepareStatement("select docgia.* from docgia join phieumuon "
                     + "on docgia.sothe = phieumuon.sothe join sach on sach.masach  = phieumuon.masach\n"
-                    + "where sach.tensach like 'Toan' and phieumuon.ngaymuon like '2018-01-01'");
+                    + "where sach.tensach like ? and phieumuon.ngaymuon like ?");
+            
+            pstmt2.setString(1, "Toan");
+            pstmt2.setString(2, "2018-1-1");
             ResultSet rs2 = pstmt2.executeQuery();
+            
+            
             System.out.println("sothe, ten, khoa, khoahoc, thoihanthe");
             System.out.println("==================");
             while (rs2.next()) {
@@ -59,7 +64,10 @@ public class Main {
             PreparedStatement pstmt3 = conn.prepareStatement("select docgia.ten, docgia.sothe,sach.tensach "
                     + "from docgia join phieumuon on docgia.sothe = phieumuon.sothe "
                     + "join sach on sach.masach = phieumuon.masach\n"
-                    + "where year(phieumuon.ngaymuon) = 2018 and month(phieumuon.ngaymuon) = 1;");
+                    + "where year(phieumuon.ngaymuon) = ? and month(phieumuon.ngaymuon) = ?;");
+            
+            pstmt3.setString(1, "2018");
+            pstmt3.setString(2, "1");
             ResultSet rs3 = pstmt3.executeQuery();
             System.out.println(" ten, sothe,tensach");
             System.out.println("==================");
@@ -95,8 +103,10 @@ public class Main {
             System.out.println("/*Cho biết đọc giả tên Anh mượn sách bao nhiêu lần*/");
             PreparedStatement pstmt5 = conn.prepareStatement("select docgia.ten, count(masach) "
                     + "as 'soluong' from phieumuon join docgia on phieumuon.sothe = docgia.sothe\n"
-                    + "where docgia.ten like '%Anh'"
+                    + "where docgia.ten like '%?'"
                     + "group by masach;");
+            pstmt5.setString(1, "Anh");
+
             ResultSet rs5 = pstmt5.executeQuery();
             System.out.println("ten, soluong");
             System.out.println("==================");
@@ -113,8 +123,10 @@ public class Main {
             System.out.println("/*Danh sách tên, số thẻ, các độc giả chưa trả sách*/");
             PreparedStatement pstmt6 = conn.prepareStatement("select docgia.ten, docgia.sothe"
                     + " from docgia join phieumuon on docgia.sothe = phieumuon.sothe\n"
-                    + "where phieumuon.ghichu like 'Chua %'"
+                    + "where phieumuon.ghichu like '? %'"
                     + "group by masach;");
+            pstmt6.setString(1, "Chua");
+
             ResultSet rs6 = pstmt6.executeQuery();
             System.out.println("ten, sothe");
             System.out.println("==================");
