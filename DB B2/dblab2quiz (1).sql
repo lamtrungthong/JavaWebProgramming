@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 25, 2019 lúc 11:40 AM
--- Phiên bản máy phục vụ: 10.1.36-MariaDB
--- Phiên bản PHP: 7.2.11
+-- Máy chủ: 127.0.0.1:3307
+-- Thời gian đã tạo: Th5 29, 2019 lúc 05:04 PM
+-- Phiên bản máy phục vụ: 10.1.38-MariaDB
+-- Phiên bản PHP: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `testans`
+-- Cơ sở dữ liệu: `dblab2quiz`
 --
 
 -- --------------------------------------------------------
@@ -36,7 +36,7 @@ CREATE TABLE `questions` (
   `answer_c` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `answer_d` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `correct` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `questions`
@@ -65,7 +65,7 @@ CREATE TABLE `student` (
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `pass` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `student`
@@ -74,6 +74,34 @@ CREATE TABLE `student` (
 INSERT INTO `student` (`id`, `name`, `email`, `pass`) VALUES
 (1, 'Lâm Thông', 'lamthong@gmail.com', 'lamthong123'),
 (2, 'Huân Tr?n', 'huantran@gmail.com', 'huantran123');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `student_questions`
+--
+
+CREATE TABLE `student_questions` (
+  `student_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `answer` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Đang đổ dữ liệu cho bảng `student_questions`
+--
+
+INSERT INTO `student_questions` (`student_id`, `question_id`, `answer`) VALUES
+(1, 1, 'a'),
+(1, 2, 'a'),
+(1, 3, 'a'),
+(1, 4, 'a'),
+(1, 5, 'a'),
+(1, 6, 'a'),
+(1, 7, 'a'),
+(1, 8, 'a'),
+(1, 9, 'a'),
+(1, 10, 'a');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -84,6 +112,30 @@ INSERT INTO `student` (`id`, `name`, `email`, `pass`) VALUES
 --
 ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `student`
+--
+ALTER TABLE `student`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `student_questions`
+--
+ALTER TABLE `student_questions`
+  ADD PRIMARY KEY (`student_id`,`question_id`),
+  ADD KEY `question_id` (`question_id`);
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `student_questions`
+--
+ALTER TABLE `student_questions`
+  ADD CONSTRAINT `student_questions_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`),
+  ADD CONSTRAINT `student_questions_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
