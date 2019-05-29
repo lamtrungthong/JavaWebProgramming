@@ -24,77 +24,82 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Student st = new Student();
-        Scanner sc = new Scanner(System.in);
-        String ans;
-        List<String> listarr = new ArrayList<>();
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            String conn = "jdbc:mysql://localhost:3307/dbLab2Quiz";
-            Connection connection = (Connection) DriverManager.getConnection(conn, "root", "");
+            // TODO code application logic here
+            Scanner input = new Scanner(System.in);
+            System.out.println("   QUIZ ONLINE   ");
+            System.out.println("------------------");
+            System.out.print("Enter Email: ");
+            String email = input.nextLine();
 
-            if (connection != null) {
-                System.out.println("Connected");
+            System.out.print("Enter Pass: ");
+            String pass = input.nextLine();
 
-                //đăng nhập
-                System.out.println("QIUZ ONLINE");
-                System.out.println("Who are you? ");
-                st.name = sc.nextLine();
-                System.out.println("----------------");
-                System.out.print("Enter email: ");
-                st.email = sc.nextLine();
-                System.out.print("Enter pass: ");
-                st.pass = sc.nextLine();
-                //Kiểm tra đăng nhập
-                PreparedStatement pstmt = connection.prepareStatement("select * from student where email = ? and pass = ?");
-                pstmt.setString(1, st.email);
-                pstmt.setString(2, st.pass);
-                ResultSet rs = pstmt.executeQuery();
+            StudentManager sm = new StudentManager();
+            Student s = sm.login(email, pass);
 
-                if (rs.next() == false) {
-                    System.exit(0);
-                } else {
-                    System.out.println("----------------");
-                    System.out.println("Welcom: " + st.name);
-                    System.out.println("---------START---------");
-                    //lấy câu hỏi
-                    Statement stmt1 = (Statement) connection.createStatement();
-                    ResultSet rs1 = stmt1.executeQuery("select * from questions");
-                    int stt = 1;
-                    while (rs1.next()) {
-                        System.out.println("Câu "+stt);
-                        System.out.println(rs1.getString("content"));
-                        System.out.println("a) " + rs1.getString("answer_a"));
-                        System.out.println("b) " + rs1.getString("answer_b"));
-                        System.out.println("c) " + rs1.getString("answer_c"));
-                        System.out.println("d) " + rs1.getString("answer_d"));
-                        System.out.print("Your answer: ");
-                        ans = sc.nextLine();
-                        listarr.add(ans);
-                        stt++;
-                    }
-                    //lấy đáp án
-                    Statement stmt2 = (Statement) connection.createStatement();
-                    ResultSet rs2 = stmt2.executeQuery("select correct from questions");
-
-                    int result = 0;
-                    //Kiểm tra đáp án
-                    System.out.println("-----------YOUR ANSWER------");
-                    for (String listarr1 : listarr) {
-                        rs2.next();
-                        // System.out.println(rs2.getString("correct"));
-                        if (listarr1.equals(rs2.getString("correct"))) {
-                            result++;
+            if (s != null) {
+                QuestionManager qm = new QuestionManager();
+                List<Question> questions = qm.getQuestions();
+                if (sm.isResult(s)) {
+                    System.out.println("YOU HAVE COMPLETED THE TEST.\n"
+                            + "DO YOU WANT TO DO IT AGAIN (Y/N):");
+                    String ans = input.nextLine();
+                    int countCorr = 0;
+                    if (ans.toLowerCase().equals("y")) {
+                        int index = 1;
+                        for (Question q : questions) {
+                            System.out.printf("Question %d/%d \n", index++, questions.size());
+                            System.out.println(q);
+                            System.out.print("Your answer > ");
+                            String answer = input.nextLine();
+                            sm.updateAnswer(s, q, answer);
+                            if (answer.toLowerCase().equals(q.getCorrect().toLowerCase())) {
+                                countCorr++;
+                            }
+                        }
+                        System.out.println("Congratulation!");
+                        System.out.printf("Your result: %d/%d \n", countCorr, questions.size());
+                        System.out.println("See Detail (Y/N)");
+                        String see = input.nextLine();
+                        if (see.toLowerCase().equals("y")) {
+                            sm.printResult(questions, s);
+                        } else {
+                            System.exit(0);
+                        }
+                    } else {
+                        System.out.println("Do you want see Detail (Y/N)");
+                        String see = input.nextLine();
+                        if (see.toLowerCase().equals("y")) {
+                            sm.printResult(questions, s);
+                        } else {
+                            System.exit(0);
                         }
                     }
+
+                } else {
+                    System.out.println("LOGIN SUCCESS! PRESS ANY KEY TO START QUIZ");
+                    input.nextLine();
+                    System.out.println("---------------");
+
+                    int countCorr = 0;
+                    sm.answerQuestion(questions, sm, input, s, countCorr);
                     System.out.println("Congratulation!");
-                    System.out.println("Your result " + result + "/10");
+                    System.out.printf("Your result: %d/%d \n", countCorr, questions.size());
+                    System.out.println("See Detail (Y/N)");
+                    String see = input.nextLine();
+                    if (see.toLowerCase().equals("y")) {
+                        sm.printResult(questions, s);
+                    }else 
+                        System.exit(0);
                 }
+
             } else {
-                System.out.println("No connected");
+                System.out.println("LOGIN FAIL!");
             }
-        } catch (Exception e) {
-            e.getMessage();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
         // TODO code application logic here
     }

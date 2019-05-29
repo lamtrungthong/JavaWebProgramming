@@ -10,6 +10,7 @@ package db.b2;
  * @author Student
  */
 public class Student {
+    int id;
     String name ;
     String email ;
     String pass ;
@@ -17,11 +18,22 @@ public class Student {
     public Student() {
     }
 
-    public Student(String name, String email, String pass) {
+    public Student(int id, String name, String email, String pass) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.pass = pass;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+  
 
     public String getName() {
         return name;
@@ -45,6 +57,11 @@ public class Student {
 
     public void setPass(String pass) {
         this.pass = pass;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" + "id=" + id + ", name=" + name + ", email=" + email + ", pass=" + pass + '}';
     }
     
 }
