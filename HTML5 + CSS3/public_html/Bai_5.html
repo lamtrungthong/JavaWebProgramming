@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Bài 5 - Định dạng văn bản</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <style>
+        #content{
+            width: 40%;
+            height: 400px;
+            margin: auto;
+           border: 1px solid;
+        }
+        h1{
+            text-align: center;
+            color: green;
+        }
+        label{
+            width: 70px;
+            float: left;
+        }
+        span{
+            color: red;
+        }
+        #tinhoc{
+            background-color: #CCCCCC;
+           
+        }
+        pre{
+            color: blue;
+            margin-left: 150px;
+        }
+        #tong{
+            margin-left: 180px;
+        }
+    </style>
+    <body>
+        <div id="content">
+            <h1>Định dạng văn bản</h1>
+            <div >
+                <label>Hóa học:</label> <i>Nước:</i><span>H<sub>2</sub>O;</span><i>Axit Sunfuric:</i><span>H<sub>2</sub>SO<sub>4</sub></span><br>
+                <label>Toán học:</label> <i>Phương trình bậc 2:</i><span>ax<sup>2</sup> + bx + c = 0</span><br>
+                <label>Tin học:</label> <i>Vòng lặp for:</i><br>
+                <div id="tinhoc">
+                    <pre>For i = 0 to 10</pre>
+                            <pre id = "tong" >Tong = Tong + 1</pre>
+                    <pre>Next</pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
