@@ -1,0 +1,122 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 19, 2019, 11:13:59 PM
+    Author     : lamtrungthong
+*/
+
+#header{
+    height: 200px;
+    border: 1px solid;
+}
+#header #img_left{
+    padding: 0;
+    margin:  1%;
+    height: 90%;
+    width: 8%;
+    float: left;
+    background-size: 100% 100%;
+    background-image: url(../img/img_left.jpg);
+}
+#header #header_content{
+    height: 100%;
+    width: 80%;
+    text-align: center;
+    background-color: white;
+    float: left;
+}
+#header #header_content #ai{
+    font-size: 5em;
+}
+#header #header_content #caigi{
+
+    font-size: 4.5em;
+}
+#header #header_content #odau{
+    font-size: 4em;
+}
+#header #header_content p{
+    font-weight: bold;
+    color: blue;
+    margin-top: 50px;
+}
+#header #img_right{
+    padding: 0;
+    margin:  1%;
+    height: 90%;
+    width: 8%;
+    float: left;
+    background-size: 100% 100%;
+    background-image: url(../img/img_right.jpg);
+
+}
+
+/*body*/
+
+#body{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+#body #content_left{
+    width: 20%;
+    font-size: 1.5em;
+    float: left;
+    color: #016A9E;
+    text-decoration: none;
+}
+#content_left a{
+
+    color: #016A9E;
+    text-decoration: none;
+
+}
+#content_left li{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+#body #content_right{
+    width: 79%;
+    height: 100%;
+    float: right;
+    border-left: 1px solid;
+}
+.content{
+    margin: 1px;
+    float: left;
+}
+.content {
+    margin: 1px;
+}
+.subcontent{
+    float: left;
+}
+.content .title{
+    background-color: blue;
+    height: 30px;
+    color: white;
+    font-size: 1.5em;
+    margin-left: 5px; 
+}
+.content .content_subcontent{
+    float: left;
+}
+.content_subcontent .img_subcontent{
+    width: 150px;
+    float: left;
+    margin-left: 5px;
+}
+.content_subcontent .subcontent_subcontent{
+    margin-left: 5px;
+    width: 850px;
+    float: right;
+}
+.sub_title{
+    color: blue;
+    font-size: 1.5em;
+    margin-left: 5px; 
+}
+

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            th{
+                font-weight: bold;
+                color: green;
+                font-size: 2em;
+            }
+            tbody{
+                background-color: green;
+            }
+            div{
+                width: 500px;
+                height: 50px;
+                border: 2px solid red;
+                margin: auto;
+                text-align: center;
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <form  style="">
+            <table border="1px " style="margin: auto; width: 700px; height: 100px;">
+                <thead>
+                <th colspan="2"> Đăng ký du lịch</th>
+                </thead> 
+                <tbody >
+                    <tr>
+                        <td>Họ và tên</td>
+                        <td><input type="text" value="lam trung thong" size="20"></td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ</td>
+                        <td><input type="text" value="Lạng Sơn" size="20"></td>
+                    </tr>
+                    <tr>
+                        <td>Điên thoại</td>
+                        <td><input type="number" value="0987654321" size="20"></td>
+                    </tr>
+                    <tr>
+                        <td>Khách VN</td>
+                        <td>
+                            <input type="checkbox" value="y" name="vn" checked="">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chọn tour</td>
+                        <td>
+                            <select>
+                                <option value=""> --Tour-- </option>
+                                <optgroup label="Miền Bắc">
+                                    <option value="Hà Nội-Hạ Long-SaPa">Hà Nội-Hạ Long-SaPa</option>
+                                    <option value="Hà Nội-Chùa Hương-Ninh Bình">Hà Nội-Chùa Hương-Ninh Bình</option>
+                                    <option value="Hà Nội-Cát Bà-Tuần Châu">Hà Nội-Cát Bà-Tuần Châu</option>
+                                </optgroup>
+                                <optgroup label="Miền Trung">
+                                    <option value="Huế-Bạch Mã-Đà Nắng">Huế-Bạch Mã-Đà Nắng</option>
+                                    <option value="Nha Trang-Đà Lạt">Nha Trang-Đà Lạt</option>
+                                    <option value="Buôn Mê Thuật-Gia Lai-Kon Tum">Buôn Mê Thuật-Gia Lai-Kon Tum</option>
+                                </optgroup>
+                                <optgroup label="Miền Nam">
+                                    <option value="HCM-Cần Thơ-Cà Mau">HCM-Cần Thơ-Cà Mau</option>
+                                    <option value="HCM-Mỹ Tho">HCM-Mỹ Tho</option>
+
+                                </optgroup>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Phương tiện</td>
+                        <td>
+                            <input type="radio" value="Máy bay" name="pt" checked="">Máy bay
+                            <input type="radio" value="Ô tô" name="pt" >Ô tô
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div>Người lớn<input type="number" name="nglon" min="1" max="10" >
+                                Trẻ em<input type="number" name="treem" min="0" max="10"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ghi chú thêm</td>
+                        <td><textarea rows="4" cols="50">Có 2 trẻ em dưới 6 tuổi
+2 người ăn chay
+                            </textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center;"><input type="submit" value="Đồng ý"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label></label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </body>
+</html>
