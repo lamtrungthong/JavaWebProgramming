@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+	<title>TODO supply a title</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#content{
+			width: 400px;
+			height: 500px;
+			border: 1px solid red;
+			margin: auto;
+		}
+		#content #box_display{
+			width: 330px;
+			height: 80px;
+			margin: auto;
+		}
+		#content #display{
+			width: 300px;
+			height: 70px;
+			margin-top: 10px;
+			font-size: 3.6em;
+			font-family: "Times New Roman";
+			font-weight: bold;
+			text-align: right;
+			background-color: black;
+			color: white;
+		}
+		#content #button{
+			width: 330px;
+			height: 350px;
+			margin: auto;
+			margin-top: 10px;
+		}
+		input{
+			width: 50px;
+			height: 50px;
+			font-size: 1.5em;
+			background-color: white;
+			margin: auto;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="content">
+		<div id="box_display"><textarea id="display" maxlength="1" rows="1" cols="10"></textarea></div>
+		<table id="button" >
+			<tr>
+				<td><input type="button" value="+" onclick="calculator(this.value)"></td>
+				<td><input type="button" value="-" onclick="calculator(this.value)"></td>
+				<td><input type="button" value="*" onclick="calculator(this.value)"></td>
+				<td><input type="button" value="/" onclick="calculator(this.value)"></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="7" onclick="isNumber(this.value)"></td>
+				<td><input type="button" value="8" onclick="isNumber(this.value)"></td>
+				<td><input type="button" value="9" onclick="isNumber(this.value)"></td>
+				<td rowspan="4"><input type="button" style="width: 50px;
+				height: 270px;background-color: blue;" value="=" onclick="result()"></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="4" onclick="isNumber(this.value)"></td>
+				<td><input type="button" value="5" onclick="isNumber(this.value)"></td>
+				<td><input type="button" value="6" onclick="isNumber(this.value)"></td>
+
+			</tr>
+			<tr>
+				<td><input type="button" value="1" onclick="isNumber(this.value)"></td>
+				<td><input type="button" value="2" onclick="isNumber(this.value)"></td>
+				<td><input type="button" value="3" onclick="isNumber(this.value)"></td>
+
+			</tr>
+			<tr>
+				<td><input type="button" value="0" onclick="isNumber(this.value)"></td>
+				<td><input type="button" value="." onclick="float()"></td>
+				<td><input type="reset" style="background-color: red;" value="AC" onclick="reset()"></td>
+
+			</tr>
+		</table>
+	</div>
+	<script>
+		var isFloat = float;
+		var isOperation = "";
+		var num1 = 0;
+		var num2 = 0;
+
+		function calculator(value) {
+			isOperation = value;
+			num1 = document.getElementById('display').value;
+			if (isFloat === true) {
+				num1 = parseFloat(num1);
+			}else{
+				num1 = parseInt(num1);
+			}
+			document.getElementById('display').innerHTML = "";
+		}
+		function result() {
+			num2 = document.getElementById('display').value;
+			if (isFloat === true) {
+				num2 = parseFloat(num2);
+			}else{
+				num2 = parseInt(num2);
+			}
+
+			if (isOperation =="+") {
+				document.getElementById('display').innerHTML = num1 + num2;
+			}else if(isOperation =="-"){
+				document.getElementById('display').innerHTML = num1 - num2;
+			}else if(isOperation =="*"){
+				document.getElementById('display').innerHTML = num1 * num2;
+			}else if(isOperation =="/"){
+				document.getElementById('display').innerHTML = num1 / num2;
+			}
+			
+		}
+		function isNumber(value) {
+			if (document.getElementById('display').value.length >= 10) {
+
+			}else{
+				document.getElementById('display').innerHTML +=value; 
+				
+			}
+		}
+		function reset(){
+			document.getElementById('display').innerHTML = "";
+			isFloat = false;
+		}
+		function float(){
+			document.getElementById('display').innerHTML += "."; 
+			isFloat = true;
+		}
+	</script>
+</body>
+</html>

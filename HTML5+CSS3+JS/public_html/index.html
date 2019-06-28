@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            lable{
+                width: 80px;
+                float: left;
+            }
+        </style>
+    </head>
+    <body>
+    <lable>Name:</lable><input type="text" id="name"> &nbsp<span id = 'bug_name'></span> <br><br>
+    <lable>Email:</lable><input type="email" id="email">&nbsp<span id = 'bug_email'></span><br><br>
+    <lable>Website:</lable><input type="text" id="web">&nbsp<span id = 'bug_web'></span><br><br>
+    <lable>Message:</lable><textarea id="message" cols="21" rows="5"></textarea>&nbsp<span id = 'bug_message'></span><br><br>
+    <lable></lable> <input type="button" onclick="check()" value="Submit">
+</body>
+
+<script>
+    function check() {
+        var name = document.getElementById('name');
+        var email = document.getElementById('email');
+        var web = document.getElementById('web');
+        var message = document.getElementById('message');
+
+        if (name.value === "") {
+            name.style.border = '2px solid red';
+            document.getElementById('bug_name').innerHTML = 'This field is required';
+            document.getElementById('bug_name').style.color = 'red';
+        }
+
+        if (email.value === "") {
+            email.style.border = '2px solid red';
+            document.getElementById('bug_email').innerHTML = 'A valid email address is required';
+            document.getElementById('bug_email').style.color = 'red';
+        }
+        if (web.value === "") {
+            web.style.border = '2px solid red';
+            document.getElementById('bug_web').innerHTML = 'A valid url is required';
+            document.getElementById('bug_web').style.color = 'red';
+        }
+        if (message.value === "") {
+            message.style.border = '2px solid red';
+            document.getElementById('bug_message').innerHTML = 'This field is required';
+            document.getElementById('bug_message').style.color = 'red';
+        }
+    }
+</script>
+</html>
