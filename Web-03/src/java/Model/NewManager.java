@@ -58,5 +58,45 @@ public class NewManager {
 
         return list;
     }
+    
+    public List search(String title, int limit, int offset) throws SQLException{
+        String sql = "SELECT * FROM news WHERE title like ? LIMIT ? OFFSET ?";       
+        PreparedStatement pstmt = this.conn.prepareStatement(sql);
+        
+        pstmt.setString(1, "%"+title+"%");
+        pstmt.setInt(2, limit);
+        pstmt.setInt(3, offset);
+        
+        ResultSet rs = pstmt.executeQuery(); 
+        
+        List<News> list = new ArrayList<>();
+
+        while (rs.next()) {
+            News news = new News();
+            news.setId(rs.getInt("id"));
+            news.setImage(rs.getString("image"));
+            news.setTitle(rs.getString("title"));
+            news.setSummary(rs.getString("summary"));
+            news.setContent(rs.getString("content"));
+            news.setCreate_at(rs.getString("create_at"));
+            news.setAuthor_id(rs.getInt("author_id"));
+
+            list.add(news);
+        }
+
+        return list;
+    }
+    
+    public int countSearch(String title) throws SQLException{
+        String sql = "SELECT count(*) FROM news WHERE title like ?";       
+        PreparedStatement pstmt = this.conn.prepareStatement(sql);
+        
+        pstmt.setString(1, "%"+title+"%");
+        
+        ResultSet rs = pstmt.executeQuery();
+        
+        rs.next();
+        return rs.getInt(1);
+    }
 
 }

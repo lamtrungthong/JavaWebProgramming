@@ -21,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author lds2h
  */
-@WebServlet(name = "NewsServlet", urlPatterns = {"/news"})
-public class NewsServlet extends HttpServlet {
+@WebServlet(name = "SearchServlet", urlPatterns = {"/search"})
+public class SearchServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,21 +41,32 @@ public class NewsServlet extends HttpServlet {
             NewManager model = new NewManager();
             List<News> news = new ArrayList<>();
             
+            String titleSearch = request.getParameter("search");
             
             int totalPage = 0;
-            int count = model.countNews();
-            int recordPerPage = 2;
             
+            int recordPerPage = 2;
+            int count;
             int currPage = 1;
+            
+            if(titleSearch == null){
+                news = model.getNews(recordPerPage, recordPerPage *(currPage-1));
+                 count = model.countNews();
+            }else{
+                news = model.search(titleSearch, recordPerPage, recordPerPage *(currPage-1));
+                count = model.countSearch(titleSearch);
+            }
             
             String paramPage = request.getParameter("page");
             if (paramPage != null) {
                 currPage = Integer.parseInt(paramPage);
             }
             
+     
+            
             totalPage = (int) (Math.floor(count/recordPerPage)+1); 
             
-            news = model.getNews(recordPerPage, recordPerPage *(currPage-1));
+            //news = model.search(titleSearch, recordPerPage, recordPerPage *(currPage-1));
             
             request.setAttribute("news", news);
             request.setAttribute("total", totalPage);

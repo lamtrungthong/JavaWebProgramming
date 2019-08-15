@@ -23,7 +23,7 @@
             </button>
         </nav>
         <div class="container">
-            <form style="margin-top: 70px" action="search" method="GET">
+            <form style="margin-top: 70px" action="search" method="POST">
                 <div class="form-group">
                     <lable>Search</lable>
                     <input type="text" name="search" class="form-control" />
