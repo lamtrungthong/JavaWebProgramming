@@ -20,10 +20,11 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent ">
-        <form class="form-inline my-2 my-lg-0 " style="margin-left: auto">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-success" type="submit">Search</button>
+        <form class="form-inline my-2 my-lg-0 " style="margin: auto">
+            <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
+            <button class="btn btn-success" type="submit">Tìm</button>
         </form>
+        <a href="" class="btn btn-primary" >Log in</a>
     </div>
 
 </nav>

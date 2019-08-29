@@ -27,7 +27,7 @@ public class ProductModel {
     
     //get all products
     public List getProd() throws SQLException{
-        String sql = "SELECT * FROM product";
+        String sql = "SELECT * FROM products";
         PreparedStatement pstmt = this.conn.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
         
@@ -41,7 +41,7 @@ public class ProductModel {
             p.setImages(rs.getString("images"));
             p.setActived(rs.getInt("actived"));
             p.setCreate_at(rs.getDate("created_at"));
-            p.setUpdated_at(rs.getDate("updated_ad"));
+            p.setUpdated_at(rs.getDate("updated_at"));
             listProd.add(p);
         }
         return listProd;

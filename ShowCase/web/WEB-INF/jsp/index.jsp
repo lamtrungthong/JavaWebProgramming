@@ -16,12 +16,11 @@
         <div class="container">
             <div class="album py-5 bg-light">
                 <div class="container">
-                    <img src="kma.png" >
                     <div class="row">
                         <c:forEach var="prod" items="${listProd}">
                             <div class="col-md-4">
                                 <div class="card mb-4 shadow-sm">
-                                    <img src="./img/viblo.png" class="card-img-top" alt="..."/>
+                                    <img src="${prod.images}" class="card-img-top" alt="..."/>
                                     <div class="card-body">
                                         <h5 class="card-title">${prod.name}</h5>
                                         <p class="card-text">${prod.description}</p>
@@ -34,6 +33,7 @@
                 </div>
             </div>
         </div>
+        <%@include file="footer.jsp" %>
     </body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
